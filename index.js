@@ -1,10 +1,11 @@
-// app.js
+// app.js or index.js (update your file accordingly)
+
 const searchInput = document.getElementById('searchInput');
 const searchBtn = document.getElementById('searchBtn');
 const resultsDiv = document.getElementById('results');
 const darkMode = document.getElementById('darkMode');
 
-// ✅ Use CORS proxy to avoid CORS errors
+// Correct API URL with CORS proxy
 const API_URL = 'https://corsproxy.io/?https://book-buddy-3.onrender.com/posts';
 
 searchBtn.addEventListener('click', () => {
@@ -79,7 +80,7 @@ function saveBookToServer(book) {
   });
 }
 
-// 🌙 Dark Mode Toggle
+// Dark Mode toggle code (unchanged)
 function updateDarkModeLabel() {
   const isDark = document.body.classList.contains('dark-mode');
   darkMode.textContent = isDark ? 'Light Mode' : 'Dark Mode';
@@ -111,5 +112,4 @@ darkMode.addEventListener('click', () => {
   const isDark = document.body.classList.contains('dark-mode');
   setDarkMode(!isDark);
 });
-
 

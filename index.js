@@ -1,8 +1,10 @@
-// app.js
 const searchInput = document.getElementById('searchInput');
 const searchBtn = document.getElementById('searchBtn');
 const resultsDiv = document.getElementById('results');
 const darkMode = document.getElementById('darkMode');
+
+// 🔁 Your Render JSON Server URL here
+const API_URL = 'https://your-json-api.onrender.com/posts';
 
 searchBtn.addEventListener('click', () => {
   const query = searchInput.value.trim();
@@ -48,9 +50,32 @@ function displayBooks(books) {
     bookDiv.innerHTML = `
       <div class="book-title">${title}</div>
       <div class="book-author">by ${author}</div>
+      <button class="save-btn">Save</button>
     `;
 
+    // Save book to JSON Server when button is clicked
+    bookDiv.querySelector('.save-btn').addEventListener('click', () => {
+      saveBookToServer({ title, author });
+    });
+
     resultsDiv.appendChild(bookDiv);
+  });
+}
+
+function saveBookToServer(book) {
+  fetch(API_URL, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(book)
+  })
+  .then(res => res.json())
+  .then(data => {
+    alert('Book saved to server!');
+    console.log('Saved:', data);
+  })
+  .catch(err => {
+    alert('Error saving book.');
+    console.error(err);
   });
 }
 
@@ -79,7 +104,6 @@ function setDarkMode(enabled) {
   }, 100);
 }
 
-// Initialize mode
 const savedMode = localStorage.getItem('darkMode');
 setDarkMode(savedMode === 'enabled');
 
@@ -87,3 +111,4 @@ darkMode.addEventListener('click', () => {
   const isDark = document.body.classList.contains('dark-mode');
   setDarkMode(!isDark);
 });
+

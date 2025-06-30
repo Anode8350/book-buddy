@@ -1,10 +1,11 @@
+// app.js
 const searchInput = document.getElementById('searchInput');
 const searchBtn = document.getElementById('searchBtn');
 const resultsDiv = document.getElementById('results');
 const darkMode = document.getElementById('darkMode');
 
-// 🔁 Your Render JSON Server URL here
-const API_URL = 'https://your-json-api.onrender.com/posts';
+// ✅ Your deployed JSON Server URL
+const API_URL = 'https://book-buddy-3.onrender.com/posts';
 
 searchBtn.addEventListener('click', () => {
   const query = searchInput.value.trim();
@@ -53,7 +54,6 @@ function displayBooks(books) {
       <button class="save-btn">Save</button>
     `;
 
-    // Save book to JSON Server when button is clicked
     bookDiv.querySelector('.save-btn').addEventListener('click', () => {
       saveBookToServer({ title, author });
     });
@@ -70,16 +70,16 @@ function saveBookToServer(book) {
   })
   .then(res => res.json())
   .then(data => {
-    alert('Book saved to server!');
+    alert('✅ Book saved to server!');
     console.log('Saved:', data);
   })
   .catch(err => {
-    alert('Error saving book.');
+    alert('❌ Error saving book.');
     console.error(err);
   });
 }
 
-// 🌙 Dark Mode Toggle
+// 🌙 Dark Mode
 function updateDarkModeLabel() {
   const isDark = document.body.classList.contains('dark-mode');
   darkMode.textContent = isDark ? 'Light Mode' : 'Dark Mode';

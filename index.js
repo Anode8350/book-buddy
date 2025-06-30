@@ -1,3 +1,4 @@
+// app.js
 const searchInput = document.getElementById('searchInput');
 const searchBtn = document.getElementById('searchBtn');
 const resultsDiv = document.getElementById('results');
@@ -23,7 +24,7 @@ function searchBooks(query) {
   fetch(`https://openlibrary.org/search.json?q=${encodeURIComponent(query)}`)
     .then(response => response.json())
     .then(data => {
-      if (data.docs.length === 0) {
+      if (!data.docs || data.docs.length === 0) {
         resultsDiv.innerHTML = 'No books found.';
         return;
       }
@@ -48,17 +49,18 @@ function displayBooks(books) {
       <div class="book-title">${title}</div>
       <div class="book-author">by ${author}</div>
     `;
+
     resultsDiv.appendChild(bookDiv);
   });
 }
 
+// 🌙 Dark Mode Toggle
 function updateDarkModeLabel() {
   const isDark = document.body.classList.contains('dark-mode');
   darkMode.textContent = isDark ? 'Light Mode' : 'Dark Mode';
 }
 
 function setDarkMode(enabled) {
-  // Add fade animation
   document.body.classList.add('fade-transition');
 
   setTimeout(() => {
@@ -77,13 +79,9 @@ function setDarkMode(enabled) {
   }, 100);
 }
 
-// Initialize dark mode based on saved preference
+// Initialize mode
 const savedMode = localStorage.getItem('darkMode');
-if (savedMode === 'enabled') {
-  setDarkMode(true);
-} else {
-  setDarkMode(false);
-}
+setDarkMode(savedMode === 'enabled');
 
 darkMode.addEventListener('click', () => {
   const isDark = document.body.classList.contains('dark-mode');

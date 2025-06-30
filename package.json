@@ -1,7 +1,8 @@
 {
 
   "scripts": {
-    "server": "json-server --watch db.json --port 3000"
+    "server": "json-server --host 0.0.0.0 --watch db.json --port 3000"
+
   },
   "dependencies": {
     "json-server": "^0.17.4"

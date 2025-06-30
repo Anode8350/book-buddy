@@ -4,8 +4,8 @@ const searchBtn = document.getElementById('searchBtn');
 const resultsDiv = document.getElementById('results');
 const darkMode = document.getElementById('darkMode');
 
-// ✅ Your deployed JSON Server URL
-const API_URL = 'https://book-buddy-3.onrender.com/posts';
+// ✅ Use CORS proxy to avoid CORS errors
+const API_URL = 'https://corsproxy.io/?https://book-buddy-3.onrender.com/posts';
 
 searchBtn.addEventListener('click', () => {
   const query = searchInput.value.trim();
@@ -79,7 +79,7 @@ function saveBookToServer(book) {
   });
 }
 
-// 🌙 Dark Mode
+// 🌙 Dark Mode Toggle
 function updateDarkModeLabel() {
   const isDark = document.body.classList.contains('dark-mode');
   darkMode.textContent = isDark ? 'Light Mode' : 'Dark Mode';
@@ -111,4 +111,5 @@ darkMode.addEventListener('click', () => {
   const isDark = document.body.classList.contains('dark-mode');
   setDarkMode(!isDark);
 });
+
 

@@ -1,12 +1,10 @@
-// app.js or index.js (update your file accordingly)
-
 const searchInput = document.getElementById('searchInput');
 const searchBtn = document.getElementById('searchBtn');
 const resultsDiv = document.getElementById('results');
 const darkMode = document.getElementById('darkMode');
 
-// Correct API URL with CORS proxy
-const API_URL = 'https://corsproxy.io/?https://book-buddy-3.onrender.com/posts';
+// ✅ Direct API URL without CORS proxy
+const API_URL = 'https://book-buddy-3.onrender.com/posts';
 
 searchBtn.addEventListener('click', () => {
   const query = searchInput.value.trim();
@@ -69,7 +67,10 @@ function saveBookToServer(book) {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(book)
   })
-  .then(res => res.json())
+  .then(res => {
+    if (!res.ok) throw new Error('Failed to save');
+    return res.json();
+  })
   .then(data => {
     alert('✅ Book saved to server!');
     console.log('Saved:', data);
@@ -80,7 +81,7 @@ function saveBookToServer(book) {
   });
 }
 
-// Dark Mode toggle code (unchanged)
+// 🌙 Dark Mode
 function updateDarkModeLabel() {
   const isDark = document.body.classList.contains('dark-mode');
   darkMode.textContent = isDark ? 'Light Mode' : 'Dark Mode';
@@ -112,4 +113,3 @@ darkMode.addEventListener('click', () => {
   const isDark = document.body.classList.contains('dark-mode');
   setDarkMode(!isDark);
 });
-

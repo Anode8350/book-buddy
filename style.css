@@ -1,73 +1,32 @@
+/* style.css */
 body {
   font-family: Arial, sans-serif;
   padding: 20px;
-  max-width: 600px;
-  margin: auto;
   background-color: white;
   color: black;
-  transition: background-color 0.5s ease, color 0.5s ease;
-  will-change: background-color, color;
-  opacity: 1;
+  transition: background-color 0.3s, color 0.3s;
 }
 
-body.fade-transition {
-  transition: opacity 0.4s ease;
-  opacity: 0.5;
+.dark-mode {
+  background-color: #121212;
+  color: #f0f0f0;
+}
+
+.fade-transition {
+  transition: background-color 0.3s, color 0.3s;
 }
 
 input, button {
   padding: 10px;
-  font-size: 16px;
-  margin-right: 10px;
-  background-color: white;
-  color: black;
-  border: 1px solid #ccc;
-  transition: background-color 0.5s ease, color 0.5s ease, border-color 0.5s ease;
+  margin: 5px;
 }
 
-#searchContainer {
-  margin-bottom: 20px;
-}
-
-#results .book {
-  margin-bottom: 15px;
-  padding-bottom: 10px;
+.book {
+  margin-top: 10px;
+  padding: 10px;
   border-bottom: 1px solid #ccc;
-  transition: background-color 0.5s ease, color 0.5s ease;
 }
 
 .book-title {
   font-weight: bold;
-}
-
-.book-author {
-  font-style: italic;
-}
-
-#darkMode {
-  margin-top: 20px;
-  padding: 10px 20px;
-  font-size: 14px;
-  cursor: pointer;
-  background-color: white;
-  color: black;
-  border: 1px solid #ccc;
-  transition: background-color 0.5s ease, color 0.5s ease, border-color 0.5s ease;
-}
-
-body.dark-mode {
-  background-color: #121212;
-  color: #e0e0e0;
-}
-
-body.dark-mode input,
-body.dark-mode button,
-body.dark-mode #darkMode {
-  background-color: #333;
-  color: #e0e0e0;
-  border: 1px solid #555;
-}
-
-body.dark-mode #results .book {
-  border-color: #444;
 }
